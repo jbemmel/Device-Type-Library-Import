@@ -36,7 +36,7 @@ class DTLRepo:
         return os.path.join(self.get_absolute_path(), 'module-types')
 
     def slug_format(self, name):
-        return re_sub('\W+', '-', name.lower())
+        return re_sub('\\W+', '-', name.lower())
 
     def pull_repo(self):
         try:
@@ -98,7 +98,7 @@ class DTLRepo:
                 # Save file location to resolve any relative paths for images
                 data['src'] = file
 
-            if slugs and data['manufacturer']['slug'] not in slugs:
+            if slugs and ('slug' not in data or data['slug'] not in slugs):
                 self.handle.verbose_log(f"Skipping {data['model']}")
                 continue
 
