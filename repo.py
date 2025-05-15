@@ -98,7 +98,7 @@ class DTLRepo:
                 # Save file location to resolve any relative paths for images
                 data['src'] = file
 
-            if slugs and True not in [True if s.casefold() in data['slug'].casefold() else False for s in slugs]:
+            if slugs and data['manufacturer']['slug'] not in slugs:
                 self.handle.verbose_log(f"Skipping {data['model']}")
                 continue
 
